@@ -3,7 +3,6 @@ const BASE_URL = 'http://localhost:3001';
 let moveList = [];
 let coordinateHistory = [];
 currentPosition = [5, 0]
-previousPosition = [...currentPosition]
 
 $( document ).ready(function() {
   $("#sendMove").on("click", ()=>sendMove(moveList));
@@ -33,12 +32,7 @@ const sendMove = async function (movesList) {
 }
 
 const userKeyCapture = function (event) {
-  previousPosition = [...currentPosition];
-  $(`#${previousPosition[0]}-${previousPosition[1]}`)
-  .removeClass("currentCell")
-  .addClass("previousCell")
-  
-  console.log('prevPos : ', previousPosition);
+  currentPosition = coordinateHistory[coordinateHistory.length-1] || [5,0];
 
   if (event.keyCode === 78 || event.keyCode === 38) {
     moveList.push("N");
@@ -60,21 +54,24 @@ const userKeyCapture = function (event) {
     coordinateHistory.push([currentPosition[0], currentPosition[1]-1]);
     $("#userCaptureDisplay").append(`<li>${moveList[moveList.length-1]}</li>`);
   
-  } else if ( event.keyCode === 8) {
+  } else if (event.keyCode === 8) {
     moveList.pop();
-    coordinateHistory.pop();
+    let removedPosition = coordinateHistory.pop();
+    $(`#${removedPosition[0]}-${removedPosition[1]}`).removeClass("currentCell").removeClass("previousCell")
     $("#userCaptureDisplay li").last().remove();
   
-  } else if ( event.keyCode === 13) {
+  } else if (event.keyCode === 13) {
     sendMove(moveList);
   
   }
   
-  currentPosition = coordinateHistory[moveList.length-1]
-  console.log('currPos : ', currentPosition);
-
-  $(`#${currentPosition[0]}-${currentPosition[1]}`)
-  .addClass("currentCell")
+  coordinateHistory.forEach((el, i) => {
+    if (i === coordinateHistory.length-1) {
+      $(`#${el[0]}-${el[1]}`).addClass("currentCell")  
+    } else {
+      $(`#${el[0]}-${el[1]}`).removeClass("currentCell").addClass("previousCell")
+    }
+  })
 }
 
 const createMap = function () {
