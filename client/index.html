@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lord of the rings</title>
+    <title>Destroy Da One Ring</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bilbo&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" 
+      type="image/png" 
+      href="./assets/favicon.svg"
+    >
   </head>
   <body>
-    Hello
-    <form>
-      <input>
-    </form>
-    <button type="button" id="sendMove">Send selected move combination</button>
-    <p id="response">Text</p>
-    <ul id="userCaptureDisplay">userCapture</ul>
+    <h1>Destroy the One Ring</h1>
+
+    <h2 id="winLoseMessage" class="message">The Journey has begun</h2>
+    <h3 id="winLoseSubMessage" class="subMessage">Find Mt Doom and destroy the ring</h3>
+    
     <table id="map">
     </table>
+    
+    <button type="button" id="sendMove" class="button">Did I destroy the Ring?</button>
+    <button type="button" id="restartGame" class="button">Restart Game</button>
+
+    <h4>Your moves</h4>
+    <ul id="userCaptureDisplay"></ul>
+
+    <button type="button" id="openInstructions" class="openInstructions">i</button>
+    <div id="instructions" class="instructions">
+      <p>The objective of the game is to find Mt Doom so that Frodo can destroy the One Ring.</p>
+      <p>Navigate the map using directional keys, or "N", "S", "W", and "E" keys.</p>
+      <p>To erase a move, hit backspace, to check if you made it, press ENTER or click "Did I defeat Sauron".</p>
+      <p>On the way to Mt Doom you will have to dodge past Orcs, if your route passes Orcs, you will die.</p>
+      <p>If you move off the map, or your path doesn't pass by anything, you lose.</p>
+      <button type="button" id="closeInstructions" class="closeInstructions">Close instructions</button>
+    </div>
+    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
   </body>

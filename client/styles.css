@@ -1,7 +1,180 @@
+/* DOCUMENT STYLING */
+:root {
+  --bg-dark: #5c1014;
+  --bg-light: #c4b479;
+  --text-light: #f7f8fa;
+  --text-warning: #5c1014;
+  --text-warning-light: #87272c;
+  --success: #375637;
+  --highlight: #94AB4D;
+  --highlight-light: #d6ed93;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px; 
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 16px; 
+}
+
+body {
+  background-color: var(--bg-light);
+  text-align: center;
+}
+
+/* HEADER STYLING */
+h1 {
+  font-family: 'Bilbo', cursive;
+  font-size: 5rem;
+  color: #ffcc00;
+  text-shadow: 0 0 3px black;
+}
+
+/* SUCCESS AND FAILURE MESSAGE STYLING */
+.message {
+  color: var(--text-warning);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 4rem;
+}
+
+.message.success {
+  color: var(--text-success);
+}
+
+.subMessage{
+  color: var(--text-warning-light);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2rem;
+}
+
+.subMessage.success {
+  color: var(--highlight);
+  text-shadow: 0 0 3px var(--text-success);
+}
+
+/* MAP / GRID STYLING */
+table {
+  background: linear-gradient(
+    rgba(196, 180, 121, 0.3),
+    rgba(196, 180, 121, 0.3)),
+    url('./assets/map.png');
+  background-size:cover;
+  border-collapse: collapse;
+  border: 0.1rem solid var(--success);
+  margin: .5rem auto;
+}
+
+td {
+  height: 3rem;
+  width: 3rem;
+  border: 0.1rem solid var(--success)
+}
+
+td.orc {
+  background: linear-gradient(
+    rgba(135, 39, 44, 0.3),
+    rgba(135, 39, 44, 0.3)),
+    url('./assets/orc.jpeg');
+  background-size:cover;
+}
+
+td.nowhere {
+  background: linear-gradient(
+    rgba(135, 39, 44, 0.3),
+    rgba(135, 39, 44, 0.3)),
+    url('./assets/nowhere.jpg');
+  background-size:cover;
+  background-position: center;
+}
+
+td.sauron {
+  background: linear-gradient(
+    rgba(196, 180, 121, 0.3),
+    rgba(214, 237, 147, 0.3)),
+    url('./assets/favicon.svg');
+  background-size:cover;
+  background-position: center;
+}
+
 .previousCell {
-  background-color: yellow;
+  background-color: rgba(148, 171, 77, 0.7);
 }
 
 .currentCell {
-  background-color: red;
+  background-color: rgba(92, 16, 20, 0.7);
+}
+
+/* LIST OF PREVIOUS MOVES STYLING */
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem 10%;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+  padding: 0 1rem;
+}
+
+/* BUTTON STYLING */
+.button {
+  border: 0.1rem solid var(--success);
+  border-radius: 100px;
+  padding: 1rem;
+  margin: 0.5rem;
+  color: var(--success);
+  font-size: 1rem;
+  transition: 0.3s all;
+}
+
+.button:hover {
+  background-color: var(--highlight-light);
+  transform: scale(1.1);
+}
+
+/* INSTRUCTIONS AND RESTART GAME STYLING */
+.instructions {
+  background-color: var(--highlight-light);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90vh;
+  width: 90vw;
+  margin: 5vh 5vw;
+  padding: 1rem;
+  border: 0.1rem solid var(--bg-dark);
+  border-radius: .5rem;
+}
+
+.instructions p {
+  text-align: left;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.openInstructions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border: 0.1rem solid var(--bg-dark);
+  border-radius: .5rem;
+  background-color: var(--highlight-light);
+}
+
+.close {
+  padding: 1rem;
+  width: 6rem;
 }

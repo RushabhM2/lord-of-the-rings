@@ -12,10 +12,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 app.use(router);
-app.use(express.static(publicPath));
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(publicPath, 'index.html'));
-// });
+app.use(express.static(publicPath)); // Serving static files
 
 app.listen(PORT, () => {
   console.log(`server listening on http://localhost:${PORT}`); // eslint-disable-line no-console

@@ -1,10 +1,16 @@
-const playMoves = function (moveList, map, currentPosition = [5, 0]) {
+function playMoves (moveList, map, currentPosition = [5, 0]) {
+  
+  // response value schema
   output = {
     message: "",
     subMessage: "",
-    step: 0
+    position: [...currentPosition],
+    status: 0
   };
+
   let newPosition = [...currentPosition];
+  
+  // converting each move to coordinate movements
   for(let i = 0; i < moveList.length; i++) {
     if (moveList[i] === "N") {
       newPosition = [newPosition[0]-1, newPosition[1]]
@@ -16,6 +22,7 @@ const playMoves = function (moveList, map, currentPosition = [5, 0]) {
       newPosition = [newPosition[0], newPosition[1]-1]
     }
 
+    // managing each of the 4 end game cases
     if (
         newPosition[0] < 0 ||
         newPosition[0] >= map.length ||
@@ -23,23 +30,26 @@ const playMoves = function (moveList, map, currentPosition = [5, 0]) {
         newPosition[1] >= map[0].length
       ) {
         output = {
-          message: "You died: fell off the map",
-          subMessage: "Straight into the forest",
-          step: i+1
+          message: "You fell off the map",
+          subMessage: "You have failed the people of Middle Earth",
+          position: newPosition,
+          status: 1
         }
       return output;
     } else if (map[newPosition[0]][newPosition[1]] == 'O') {
       output = {
-        message: "You died: Orcs found you",
+        message: "You died: The Orcs found you",
         subMessage: "Meat's back on the menu boys!",
-        step: i+1
+        position: newPosition,
+        status: 2
       }
       return output;
     } else if (map[newPosition[0]][newPosition[1]] == 'D') {
       output = {
         message: "You Win!!",
         subMessage: "Sauron has been defeated",
-        step: i+1
+        position: newPosition,
+        status: 3
       }
       return output;
     }
@@ -47,9 +57,10 @@ const playMoves = function (moveList, map, currentPosition = [5, 0]) {
 
   if (map[newPosition[0]][newPosition[1]] === '-') {
     output = {
-      message: "You died: didnt get anywhere",
-      subMessage: "Master has no more elven bread",
-      step: i+1
+      message: "Your journey didn't get you anywhere",
+      subMessage: "Master has no eaten all the bread",
+      position: newPosition,
+      status: 4
     }
     return output;
   }
