@@ -18,7 +18,8 @@ function playMoves (moveList, map, currentPosition = [5, 0]) {
   output = {
     message: "",
     subMessage: "",
-    step: 0
+    step: 0,
+    position: [...currentPosition]
   };
   let newPosition = [...currentPosition];
   for(let i = 0; i < moveList.length; i++) {
@@ -41,21 +42,24 @@ function playMoves (moveList, map, currentPosition = [5, 0]) {
         output = {
           message: "You died: fell off the map",
           subMessage: "Straight into the forest",
-          step: i+1
+          step: i+1,
+          position: newPosition
         }
       return output;
     } else if (map[newPosition[0]][newPosition[1]] == 'O') {
       output = {
         message: "You died: Orcs found you",
         subMessage: "Meat's back on the menu boys!",
-        step: i+1
+        step: i+1,
+        position: newPosition
       }
       return output;
     } else if (map[newPosition[0]][newPosition[1]] == 'D') {
       output = {
         message: "You Win!!",
         subMessage: "Sauron has been defeated",
-        step: i+1
+        step: i+1,
+        position: newPosition
       }
       return output;
     }
@@ -65,7 +69,8 @@ function playMoves (moveList, map, currentPosition = [5, 0]) {
     output = {
       message: "You died: didnt get anywhere",
       subMessage: "Master has no more elven bread",
-      step: i+1
+      step: i+1,
+      position: newPosition
     }
     return output;
   }
@@ -75,7 +80,6 @@ function playMoves (moveList, map, currentPosition = [5, 0]) {
 
 const userMove = async function (req, res) {
   try {
-    console.log(req.body);
     const moveList = req.body.moveList;
     const response = playMoves(moveList, map)
     res.json(response);
