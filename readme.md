@@ -1,5 +1,5 @@
 # Getting started
-This app uses 2 backend packes, Express and CORS. To install these run
+This app uses 2 backend packages, Express and CORS. To install these run
 `npm install` when in the **server** folder.
 
 To start the app, run `node index.js` when in the **server** folder.
