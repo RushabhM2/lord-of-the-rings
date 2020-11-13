@@ -1,3 +1,6 @@
+// const map = require('./map');
+// let playMoves = require('./playMoves');
+
 let map = [
   ['-', '-', '-', 'O', '-', '-', '-', '-', '-', 'O'],
   ['-', 'O', '-', '-', '-', 'O', '-', 'D', '-', '-'],
@@ -72,6 +75,7 @@ function playMoves (moveList, map, currentPosition = [5, 0]) {
 
 const userMove = async function (req, res) {
   try {
+    console.log(req.body);
     const moveList = req.body.moveList;
     const response = playMoves(moveList, map)
     res.json(response);
